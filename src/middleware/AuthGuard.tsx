@@ -1,22 +1,17 @@
 import React from "react";
-import {SecureRoute, useAuthContext} from "@asgardeo/auth-react";
+import {SecureApp} from "@asgardeo/auth-react";
 import MainLayout from "../layout/MainLayout.tsx";
 
 interface AuthGuardProps {
-  path: string;
-  component: React.ReactElement;
+    component: React.ReactElement;
 }
 
-const AuthGuard: React.FC<AuthGuardProps> = ({ path, component }) => {
-  const { signIn } = useAuthContext();
-
-  return (
-      <SecureRoute
-          path={path}
-          component={ <MainLayout>{component}</MainLayout> }
-          callback={ () => signIn()}
-      />
-  )
+const AuthGuard: React.FC<AuthGuardProps> = ({component}) => {
+    return (
+        <SecureApp>
+            <MainLayout>{component}</MainLayout>
+        </SecureApp>
+    )
 };
 
 export default AuthGuard;
