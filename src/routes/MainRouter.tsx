@@ -1,11 +1,11 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../pages/dashboard.tsx";
 import AuthGuard from "../middleware/AuthGuard.tsx";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/dashboard" replace />,
+    element: <AuthGuard component={ <Dashboard /> }/>,
   },
   {
     path: "/dashboard",
