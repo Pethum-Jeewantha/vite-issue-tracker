@@ -6,18 +6,12 @@ import {Theme} from "@radix-ui/themes";
 import {RouterProvider} from "react-router-dom";
 import { AuthProvider } from "@asgardeo/auth-react";
 import {router} from "./routes/MainRouter.tsx";
-
-const config = {
-    signInRedirectURL: "http://localhost:3000",
-    clientID: "RK72cj6GzYq_tzzdgtkn75X6PY8a",
-    baseUrl: "https://api.asgardeo.io/t/pethumjeewantha",
-    scope: [ "openid","profile" ]
-};
+import {asgardeoConfigs} from "./config/constant.ts";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Theme appearance="light" accentColor="violet">
-        <AuthProvider config={config}>
+        <AuthProvider config={asgardeoConfigs}>
             <RouterProvider router={router} />
         </AuthProvider>
     </Theme>
