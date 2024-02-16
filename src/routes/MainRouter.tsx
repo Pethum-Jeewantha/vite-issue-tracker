@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import Dashboard from "../pages/dashboard.tsx";
 import AuthGuard from "../middleware/AuthGuard.tsx";
+import Dashboard from "../pages/Dashboard.tsx";
 
 export const router = createBrowserRouter([
   {

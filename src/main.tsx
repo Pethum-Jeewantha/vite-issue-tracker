@@ -16,7 +16,7 @@ const config = {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Theme>
+    <Theme appearance="light" accentColor="violet">
         <AuthProvider config={config}>
             <RouterProvider router={router} />
         </AuthProvider>
