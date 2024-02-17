@@ -3,6 +3,7 @@ import {IssueInterface, Status} from "../../interfaces/issue.interface.ts";
 import {IssueStatusBadge, Link} from "../../components/common";
 import {useAppSelector} from "../../store/hooks.ts";
 import {formatDate} from "../../lib/helpers.lib.ts";
+import LoadingIssuesTable from "./loading.tsx";
 
 export interface IssueQuery {
     status: Status;
@@ -11,7 +12,9 @@ export interface IssueQuery {
 }
 
 const IssueTable = () => {
-    const {issues} = useAppSelector((state) => state.issue);
+    const {issues, loading} = useAppSelector((state) => state.issue);
+
+    if (loading) return <LoadingIssuesTable />;
 
     return (
         <Table.Root variant="surface">
