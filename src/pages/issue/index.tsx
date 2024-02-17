@@ -16,20 +16,19 @@ const Issue = () => {
     const dispatch = useAppDispatch();
     const {issues} = useAppSelector((state) => state.issue);
 
-
     const page = parseInt(searchParams.get("page")!) || 1;
+    const status = searchParams.get("status") || "";
 
     useEffect(() => {
         const offset = (page - 1) * pageSize;
 
         const payload = {
-            url: `${endPoint}?pagelimit=${pageSize}&offset=${offset}`,
+            url: `${endPoint}?pagelimit=${pageSize}&offset=${offset}&status=${status}`,
             data: {},
         };
 
         dispatch(fetchAll(payload))
-    }, [page]);
-
+    }, [page, status]);
 
     return (
         <Flex direction='column' gap='3'>
