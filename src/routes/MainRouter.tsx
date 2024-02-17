@@ -4,6 +4,7 @@ import Dashboard from "../pages/Dashboard.tsx";
 import IssuePage from "../pages/issues/list";
 import NewIssuePage from "../pages/issues/new";
 import IssueDetailPage from "../pages/issues/view";
+import EditIssuePage from "../pages/issues/edit";
 
 export const router = createBrowserRouter([
   {
@@ -25,5 +26,9 @@ export const router = createBrowserRouter([
   {
     path: "/issues/:id",
     element: <AuthGuard component={ <IssueDetailPage /> }/>,
+  },
+  {
+    path: "/issues/edit/:id",
+    element: <AuthGuard component={ <EditIssuePage/> }/>,
   },
 ]);

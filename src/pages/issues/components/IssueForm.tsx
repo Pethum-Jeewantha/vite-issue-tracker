@@ -12,7 +12,7 @@ import {issueSchema} from "../../../schema/issueSchemas.ts";
 import {ErrorMessage, Spinner} from "../../../components/common";
 import {useAppDispatch} from "../../../store/hooks.ts";
 import API_CONFIG from "../../../config/api.config.ts";
-import {create, patch} from "../../../store/features/issue/issue.service.ts";
+import {create, update} from "../../../store/features/issue/issue.service.ts";
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
@@ -40,7 +40,7 @@ const IssueForm = ({ issue }: { issue?: IssueInterface }) => {
                     url: endPoint + `/${issue.id}`,
                     data: data
                 }
-                dispatch(patch(payload));
+                dispatch(update(payload));
             } else {
                 const payload = {
                     url: endPoint,
