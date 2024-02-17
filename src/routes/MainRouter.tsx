@@ -1,6 +1,6 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import AuthGuard from "../middleware/AuthGuard.tsx";
-import Dashboard from "../pages/Dashboard.tsx";
+import Dashboard from "../pages/dashboard/Dashboard.tsx";
 import IssuePage from "../pages/issues/list";
 import NewIssuePage from "../pages/issues/new";
 import IssueDetailPage from "../pages/issues/view";
