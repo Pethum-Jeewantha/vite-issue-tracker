@@ -32,30 +32,32 @@ const IssueForm = ({ issue }: { issue?: IssueInterface }) => {
     // const { data: session } = useSession();
 
     const onSubmit = handleSubmit(async (data: IssueFormData) => {
-        try {
-            setIsSubmitting(true);
+        setIsSubmitting(true);
 
-            if (issue) {
-                const payload = {
-                    url: endPoint + `/${issue.id}`,
-                    data: data
-                }
-                dispatch(update(payload));
-            } else {
-                const payload = {
-                    url: endPoint,
-                    data: data
-                }
-                dispatch(create(payload));
+        if (issue) {
+            const payload = {
+                url: endPoint + `/${issue.id}`,
+                data: data
             }
+            dispatch(update(payload)).then((resp) => {
+                if (resp.payload) navigate('/issues/list');
 
-            // Todo: Catch clause
-            // sendMessage({ message: {isMessageSent: true, senderEmail: session?.user?.email!}});
-            navigate('/issues/list');
-        } catch (error) {
-            setIsSubmitting(false);
-            setError('An unexpected error occurred')
+                setIsSubmitting(false);
+                setError('An unexpected error occurred')
+            });
+        } else {
+            const payload = {
+                url: endPoint,
+                data: data
+            }
+            dispatch(create(payload)).then((resp) => {
+                if (resp.payload) navigate('/issues/list');
+
+                setIsSubmitting(false);
+                setError('An unexpected error occurred')
+            });
         }
+        //Todo: show error
     });
 
     return (
