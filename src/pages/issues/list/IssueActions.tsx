@@ -1,5 +1,5 @@
 import { Button, Flex } from '@radix-ui/themes'
-import IssueStatusFilter from './IssueStatusFilter'
+import IssueStatusFilter from './IssueStatusFilter.tsx'
 import { Link } from 'react-router-dom'
 
 function IssueActions() {

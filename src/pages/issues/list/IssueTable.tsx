@@ -1,8 +1,7 @@
 import {Table} from "@radix-ui/themes";
-import {IssueInterface, Status} from "../../interfaces/issue.interface.ts";
-import {IssueStatusBadge, Link} from "../../components/common";
-import {useAppSelector} from "../../store/hooks.ts";
-import {formatDate} from "../../lib/helpers.lib.ts";
+import {IssueInterface, Status} from "../../../interfaces/issue.interface.ts";
+import {IssueStatusBadge, Link} from "../../../components/common";
+import {useAppSelector} from "../../../store/hooks.ts";
 import LoadingIssuesTable from "./loading.tsx";
 
 export interface IssueQuery {
@@ -43,7 +42,7 @@ const IssueTable = () => {
                             <IssueStatusBadge status={issue.status}/>
                         </Table.Cell>
                         <Table.Cell className="hidden md:table-cell">
-                            {formatDate(issue.createdAt, "dd-MM-yyyy")}
+                            {new Date(issue.createdAt).toDateString()}
                         </Table.Cell>
                     </Table.Row>
                 ))}

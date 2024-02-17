@@ -1,7 +1,8 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import AuthGuard from "../middleware/AuthGuard.tsx";
 import Dashboard from "../pages/Dashboard.tsx";
-import Issue from "../pages/issue";
+import IssuePage from "../pages/issues/list";
+import NewIssuePage from "../pages/issues/new";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "/issues/list",
-    element: <AuthGuard component={ <Issue /> }/>,
+    element: <AuthGuard component={ <IssuePage /> }/>,
+  },
+  {
+    path: "/issues/new",
+    element: <AuthGuard component={ <NewIssuePage /> }/>,
   },
 ]);

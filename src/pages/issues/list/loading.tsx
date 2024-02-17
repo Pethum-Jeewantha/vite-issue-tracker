@@ -1,5 +1,5 @@
 import {Table} from '@radix-ui/themes'
-import {Skeleton} from "../../components/common";
+import {Skeleton} from "../../../components/common";
 
 const LoadingIssuesTable = () => {
 

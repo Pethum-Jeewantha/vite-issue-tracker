@@ -1,17 +1,17 @@
 import IssueTable from "./IssueTable.tsx";
-import {Pagination} from "../../components/common";
+import {Pagination} from "../../../components/common";
 import {Flex} from "@radix-ui/themes";
 import {useSearchParams} from "react-router-dom";
 import IssueActions from "./IssueActions.tsx";
-import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
+import {useAppDispatch, useAppSelector} from "../../../store/hooks.ts";
 import {useEffect} from "react";
-import {fetchAll} from "../../store/features/issue/issue.service.ts";
-import API_CONFIG from "../../config/api.config.ts";
+import {fetchAll} from "../../../store/features/issue/issue.service.ts";
+import API_CONFIG from "../../../config/api.config.ts";
 
 const pageSize = 10;
 const endPoint = API_CONFIG.issues;
 
-const Issue = () => {
+const IssuePage = () => {
     const [searchParams] = useSearchParams();
     const dispatch = useAppDispatch();
     const {issues} = useAppSelector((state) => state.issue);
@@ -43,4 +43,4 @@ const Issue = () => {
     )
 }
 
-export default Issue;
+export default IssuePage;

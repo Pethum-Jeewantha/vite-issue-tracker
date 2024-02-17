@@ -1,6 +1,6 @@
 import {Select} from "@radix-ui/themes";
 import {useSearchParams} from "react-router-dom";
-import {Status} from "../../interfaces/issue.interface.ts";
+import {Status} from "../../../interfaces/issue.interface.ts";
 
 const statuses: { label: string; value: Status | "ALL" }[] = [
     {label: "All", value: "ALL"},
