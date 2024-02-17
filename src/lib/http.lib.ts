@@ -16,7 +16,7 @@ const environmentVariableMapping: Record<Environment, Variable> = {
         "baseEndPoint": "",
     },
     local: {
-        "baseEndPoint": "http://localhost:32000/api",
+        "baseEndPoint": "http://localhost:3200/api",
     }
 }
 

@@ -3,8 +3,8 @@ export interface IssueInterface {
     title: string;
     description: string;
     status: Status;
-    created_at: string;
-    updated_at: string;
+    createdAt: Date;
+    updatedAt: Date;
     assignedToUserId?: string;
 }
 
