@@ -1,5 +1,5 @@
 import {  createSlice } from "@reduxjs/toolkit";
-import {create, fetchAll, remove, update} from "./issue.service.ts";
+import {create, fetchAll, patch, remove, update} from "./issue.service.ts";
 import {IssueInterface} from "../../../interfaces/issue.interface.ts";
 
 interface IssueSliceInterface {
@@ -80,6 +80,22 @@ const regionSlice = createSlice({
                 }
             })
             .addCase(update.rejected, (state) => {
+                state.loading = false;
+                state.error = "action.error.message";
+            })
+            .addCase(patch.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(patch.fulfilled, (state, action) => {
+                state.loading = false;
+                const { id, updatedData } = action.payload;
+
+                const dataToUpdate = state.issues.list.find((issue) => issue.id === id);
+                if (dataToUpdate) {
+                    Object.assign(dataToUpdate, updatedData);
+                }
+            })
+            .addCase(patch.rejected, (state) => {
                 state.loading = false;
                 state.error = "action.error.message";
             });
