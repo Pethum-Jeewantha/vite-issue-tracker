@@ -3,7 +3,7 @@ import {Pagination} from "../../components/common";
 import {Flex} from "@radix-ui/themes";
 import {useSearchParams} from "react-router-dom";
 import IssueActions from "./IssueActions.tsx";
-import {useAppDispatch} from "../../store/hooks.ts";
+import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {useEffect} from "react";
 import {fetchAll} from "../../store/features/issue/issue.service.ts";
 import API_CONFIG from "../../config/api.config.ts";
@@ -14,17 +14,21 @@ const endPoint = API_CONFIG.issues;
 const Issue = () => {
     const [searchParams] = useSearchParams();
     const dispatch = useAppDispatch();
+    const {issues} = useAppSelector((state) => state.issue);
+
+
+    const page = parseInt(searchParams.get("page")!) || 1;
 
     useEffect(() => {
+        const offset = (page - 1) * pageSize;
+
         const payload = {
-            url: endPoint,
+            url: `${endPoint}?pagelimit=${pageSize}&offset=${offset}`,
             data: {},
         };
 
         dispatch(fetchAll(payload))
-    }, []);
-
-    const page = parseInt(searchParams.get("page")!) || 1;
+    }, [page]);
 
 
     return (
@@ -34,7 +38,7 @@ const Issue = () => {
             <Pagination
                 pageSize={pageSize}
                 currentPage={page}
-                itemCount={50}
+                itemCount={issues.total}
             />
         </Flex>
     )

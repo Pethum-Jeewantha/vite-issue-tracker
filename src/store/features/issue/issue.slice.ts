@@ -2,15 +2,27 @@ import {  createSlice } from "@reduxjs/toolkit";
 import {create, fetchAll, remove, update} from "./issue.service.ts";
 import {IssueInterface} from "../../../interfaces/issue.interface.ts";
 
+interface IssueSliceInterface {
+    list: IssueInterface[];
+    offset: number;
+    limit: number;
+    total: number;
+}
+
 interface IssueState {
-    issues: IssueInterface[];
+    issues: IssueSliceInterface;
     status: "idle" | "pending" | "succeeded" | "failed";
     error: string;
     loading: boolean,
 }
 
 const initialState: IssueState = {
-    issues: [],
+    issues: {
+        list: [],
+        offset: 0,
+        limit: 10,
+        total: 0,
+    },
     status: "idle",
     error: "",
     loading: false,
@@ -38,7 +50,7 @@ const regionSlice = createSlice({
             })
             .addCase(create.fulfilled, (state, action) => {
                 state.loading = false;
-                state.issues.push(action.payload);
+                state.issues.list.push(action.payload);
             })
             .addCase(create.rejected, (state) => {
                 state.loading = false;
@@ -49,7 +61,7 @@ const regionSlice = createSlice({
             })
             .addCase(remove.fulfilled, (state, action) => {
                 state.loading = false;
-                state.issues = state.issues.filter((item) => item?.id !== action.payload);
+                state.issues.list = state.issues.list.filter((item) => item?.id !== action.payload);
             })
             .addCase(remove.rejected, (state) => {
                 state.loading = false;
@@ -62,7 +74,7 @@ const regionSlice = createSlice({
                 state.loading = false;
                 const { id, updatedData } = action.payload;
 
-                const dataToUpdate = state.issues.find((issue) => issue.id === id);
+                const dataToUpdate = state.issues.list.find((issue) => issue.id === id);
                 if (dataToUpdate) {
                     Object.assign(dataToUpdate, updatedData);
                 }
