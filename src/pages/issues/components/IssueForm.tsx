@@ -13,6 +13,8 @@ import {useAppDispatch} from "../../../store/hooks.ts";
 import API_CONFIG from "../../../config/api.config.ts";
 import {create, update} from "../../../store/features/issue/issue.service.ts";
 import {useWebSocket} from "../../../context/WebSocketContext.tsx";
+import LocalStorageUtil from "../../../lib/localStorage.lib.ts";
+import {BasicUserInfo} from "@asgardeo/auth-react";
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
@@ -28,7 +30,6 @@ const IssueForm = ({ issue }: { issue?: IssueInterface }) => {
 
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-    // const { data: session } = useSession();
 
     const onSubmit = handleSubmit(async (data: IssueFormData) => {
         setIsSubmitting(true);
@@ -57,7 +58,7 @@ const IssueForm = ({ issue }: { issue?: IssueInterface }) => {
             });
         }
         //Todo: show error
-        sendMessage({ message: {isMessageSent: true, senderEmail: "me@pethumjeewantha.com"}});
+        sendMessage({ message: {isMessageSent: true, user: LocalStorageUtil.getItem<BasicUserInfo>("user")!.username!}});
     });
 
     return (

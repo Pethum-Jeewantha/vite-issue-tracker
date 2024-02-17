@@ -1,10 +1,11 @@
 import {Avatar, Box, Button, Container, DropdownMenu, Flex, Text} from '@radix-ui/themes'
 import classNames from 'classnames'
-import { useAuthContext } from "@asgardeo/auth-react";
+import {BasicUserInfo, useAuthContext} from "@asgardeo/auth-react";
 import { AiFillBug } from 'react-icons/ai'
 import {Skeleton} from "../common";
 import {Link, useLocation} from "react-router-dom";
 import IssueLatestBadge from "../../pages/issues/list/IssueLatestBadge.tsx";
+import LocalStorageUtil from "../../lib/localStorage.lib.ts";
 
 const NavBar = () => {
     return (
@@ -27,7 +28,7 @@ const NavLinks = () => {
     const location = useLocation();
 
     const links = [
-        { label: 'Dashboard', href: '/' },
+        { label: 'Dashboard', href: '/dashboard' },
         { label: 'Issues', href: '/issues/list' }
     ]
 
@@ -71,11 +72,11 @@ const AuthStatus = () => {
                 <DropdownMenu.Content>
                     <DropdownMenu.Label>
                         <Text size='2'>
-                            {state.email}
+                            {LocalStorageUtil.getItem<BasicUserInfo>('user')?.username}
                         </Text>
                     </DropdownMenu.Label>
                     <DropdownMenu.Item>
-                        <Button onClick={() => signOut()}>Log out</Button>
+                        <div onClick={() => signOut()}>Log out</div>
                     </DropdownMenu.Item>
                 </DropdownMenu.Content>
             </DropdownMenu.Root>

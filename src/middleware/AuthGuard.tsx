@@ -1,16 +1,25 @@
 import React from "react";
-import {SecureApp} from "@asgardeo/auth-react";
+import {SecureApp, useAuthContext} from "@asgardeo/auth-react";
 import MainLayout from "../layout/MainLayout.tsx";
 import NavBar from "../components/layout/NavBar.tsx";
 import PageSpinner from "../components/layout/PageSpinner.tsx";
+import LocalStorageUtil from "../lib/localStorage.lib.ts";
 
 interface AuthGuardProps {
     component: React.ReactElement;
 }
 
 const AuthGuard: React.FC<AuthGuardProps> = ({component}) => {
+    const {getBasicUserInfo} = useAuthContext();
+
+    function handleSignIn() {
+        getBasicUserInfo().then((user) => {
+            LocalStorageUtil.setItem('user', user);
+        });
+    }
+
     return (
-        <SecureApp fallback={<PageSpinner/>}>
+        <SecureApp fallback={<PageSpinner/>} onSignIn={handleSignIn}>
             <NavBar />
             <MainLayout>
                 {component}

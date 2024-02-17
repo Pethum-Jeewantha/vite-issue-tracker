@@ -4,7 +4,7 @@ import {envVariables} from "../lib/http.lib.ts";
 interface Message {
     message: {
         isMessageSent: boolean;
-        senderEmail: string;
+        user: string;
     }
 }
 
@@ -15,6 +15,7 @@ interface IWebSocketContext {
 
 const WebSocketContext = createContext<IWebSocketContext | undefined>(undefined);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useWebSocket() {
     const context = useContext(WebSocketContext);
     if (!context) {

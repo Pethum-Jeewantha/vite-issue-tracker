@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react';
 import {Badge} from "@radix-ui/themes";
 import {useWebSocket} from "../../../context/WebSocketContext.tsx";
+import LocalStorageUtil from "../../../lib/localStorage.lib.ts";
+import {BasicUserInfo} from "@asgardeo/auth-react";
 
 const IssueLatestBadge = () => {
     const {message} = useWebSocket();
-    // const { data: session } = useSession();
-
     const [isVisible, setIsVisible] = useState<boolean>(true);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const IssueLatestBadge = () => {
 
     return (
         <>
-            {message?.message.isMessageSent && isVisible ? <Badge color='yellow' onClick={handleBadgeClick} className="mt-1"><span className="cursor-pointer">Issues Updated</span></Badge> : null}
+            {message?.message.isMessageSent && LocalStorageUtil.getItem<BasicUserInfo>("user")!.username !== message.message.user && isVisible ? <Badge color='yellow' onClick={handleBadgeClick} className="mt-1"><span className="cursor-pointer">Issues Updated</span></Badge> : null}
         </>
     );
 };

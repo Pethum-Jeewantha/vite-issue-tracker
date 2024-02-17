@@ -30,7 +30,7 @@ const initialState: IssueState = {
     loading: false,
 };
 
-const regionSlice = createSlice({
+const issueSlice = createSlice({
     name: "issue",
     initialState,
     reducers: {},
@@ -115,4 +115,4 @@ const regionSlice = createSlice({
     },
 });
 
-export default regionSlice.reducer;
+export default issueSlice.reducer;

@@ -4,6 +4,8 @@ import {useState} from 'react'
 import {useNavigate} from "react-router-dom";
 import {Spinner} from "../../../components/common";
 import {useWebSocket} from "../../../context/WebSocketContext.tsx";
+import LocalStorageUtil from "../../../lib/localStorage.lib.ts";
+import {BasicUserInfo} from "@asgardeo/auth-react";
 
 const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
     const navigate = useNavigate();
@@ -19,7 +21,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
             await axios.delete(`/api/issues/${issueId}`);
             navigate('/issues/list');
 
-            sendMessage({ message: {isMessageSent: true, senderEmail: "me@pethumjeewantha.com"}});
+            sendMessage({ message: {isMessageSent: true, user: LocalStorageUtil.getItem<BasicUserInfo>("user")!.username!}});
         } catch (error) {
             setDeleting(false);
             setError(true);
