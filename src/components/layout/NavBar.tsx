@@ -4,6 +4,7 @@ import { useAuthContext } from "@asgardeo/auth-react";
 import { AiFillBug } from 'react-icons/ai'
 import {Skeleton} from "../common";
 import {Link, useLocation} from "react-router-dom";
+import IssueLatestBadge from "../../pages/issues/list/IssueLatestBadge.tsx";
 
 const NavBar = () => {
     return (
@@ -13,7 +14,7 @@ const NavBar = () => {
                     <Flex align='center' gap='3'>
                         <Link to='/'><AiFillBug /></Link>
                         <NavLinks />
-                        {/*<IssueLatestBadge />*/}
+                        <IssueLatestBadge />
                     </Flex>
                     <AuthStatus />
                 </Flex>

@@ -9,13 +9,16 @@ import { Provider } from "react-redux";
 import {router} from "./routes/MainRouter.tsx";
 import {asgardeoConfigs} from "./config/constant.ts";
 import {store} from "./store/store.ts";
+import {WebSocketProvider} from "./context/WebSocketContext.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Theme appearance="light" accentColor="violet">
         <AuthProvider config={asgardeoConfigs}>
             <Provider store={store}>
-                <RouterProvider router={router} />
+                <WebSocketProvider>
+                    <RouterProvider router={router} />
+                </WebSocketProvider>
             </Provider>
         </AuthProvider>
     </Theme>

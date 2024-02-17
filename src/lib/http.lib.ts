@@ -6,22 +6,27 @@ type Environment = "local" | "stage" | "prod";
 
 interface Variable {
     baseEndPoint: string;
+    webSocketEndPoint: string;
 }
 
 const environmentVariableMapping: Record<Environment, Variable> = {
     prod: {
         "baseEndPoint": "",
+        "webSocketEndPoint": ""
     },
     stage: {
         "baseEndPoint": "",
+        "webSocketEndPoint": ""
     },
     local: {
-        "baseEndPoint": "http://localhost:3200/api",
+        "baseEndPoint": "http://localhost:3900/api",
+        "webSocketEndPoint": "ws://localhost:3200/ws"
     }
 }
 
 export const envVariables: Variable = {
     "baseEndPoint": environmentVariableMapping[currentEnvironment].baseEndPoint,
+    "webSocketEndPoint": environmentVariableMapping[currentEnvironment].webSocketEndPoint
 }
 
 export const axiosInstance: AxiosInstance = axios.create({

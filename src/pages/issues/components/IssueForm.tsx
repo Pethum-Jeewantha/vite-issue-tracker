@@ -5,7 +5,6 @@ import "easymde/dist/easymde.min.css";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import SimpleMDE from 'react-simplemde-editor';
-// import {useWebSocket} from "@/app/contexts/WebSocketContext";
 import {IssueInterface} from "../../../interfaces/issue.interface.ts";
 import {useNavigate} from "react-router-dom";
 import {issueSchema} from "../../../schema/issueSchemas.ts";
@@ -13,6 +12,7 @@ import {ErrorMessage, Spinner} from "../../../components/common";
 import {useAppDispatch} from "../../../store/hooks.ts";
 import API_CONFIG from "../../../config/api.config.ts";
 import {create, update} from "../../../store/features/issue/issue.service.ts";
+import {useWebSocket} from "../../../context/WebSocketContext.tsx";
 
 type IssueFormData = z.infer<typeof issueSchema>;
 
@@ -24,8 +24,7 @@ const IssueForm = ({ issue }: { issue?: IssueInterface }) => {
     });
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-
-    // const {sendMessage} = useWebSocket();
+    const {sendMessage} = useWebSocket();
 
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -58,6 +57,7 @@ const IssueForm = ({ issue }: { issue?: IssueInterface }) => {
             });
         }
         //Todo: show error
+        sendMessage({ message: {isMessageSent: true, senderEmail: "me@pethumjeewantha.com"}});
     });
 
     return (

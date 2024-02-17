@@ -3,11 +3,11 @@ import axios from 'axios'
 import {useState} from 'react'
 import {useNavigate} from "react-router-dom";
 import {Spinner} from "../../../components/common";
-// import {useWebSocket} from "@/app/contexts/WebSocketContext";
+import {useWebSocket} from "../../../context/WebSocketContext.tsx";
 
 const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
     const navigate = useNavigate();
-    // const {sendMessage} = useWebSocket();
+    const {sendMessage} = useWebSocket();
     const [error, setError] = useState(false);
     const [isDeleting, setDeleting] = useState(false);
     // const { data: session } = useSession();
@@ -19,7 +19,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
             await axios.delete(`/api/issues/${issueId}`);
             navigate('/issues/list');
 
-            // sendMessage({ message: {isMessageSent: true, senderEmail: session?.user?.email!}});
+            sendMessage({ message: {isMessageSent: true, senderEmail: "me@pethumjeewantha.com"}});
         } catch (error) {
             setDeleting(false);
             setError(true);
