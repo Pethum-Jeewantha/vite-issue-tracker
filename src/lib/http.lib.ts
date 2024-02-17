@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import LocalStorageUtil from "./localStorage.lib.ts";
 
 export const currentEnvironment: Environment = "local";
 
@@ -54,7 +55,7 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use((config) => {
     isLoading = true;
-    const token = localStorage.getItem("@token");
+    const token = LocalStorageUtil.getItem("@token");
     if (token) {
         config.headers['Authorization'] = `Bearer ${token}`;
     }

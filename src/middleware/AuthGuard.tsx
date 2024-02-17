@@ -10,11 +10,14 @@ interface AuthGuardProps {
 }
 
 const AuthGuard: React.FC<AuthGuardProps> = ({component}) => {
-    const {getBasicUserInfo} = useAuthContext();
+    const {getBasicUserInfo, getIDToken} = useAuthContext();
 
     function handleSignIn() {
         getBasicUserInfo().then((user) => {
             LocalStorageUtil.setItem('user', user);
+        });
+        getIDToken().then((token) => {
+            LocalStorageUtil.setItem('@token', token);
         });
     }
 
