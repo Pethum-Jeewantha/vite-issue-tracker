@@ -4,7 +4,7 @@ export interface IssueInterface {
     description: string;
     status: Status;
     createdAt: Date;
-    updatedAt: Date;
+    updatedAt?: Date;
     assignedToUserId?: string;
 }
 

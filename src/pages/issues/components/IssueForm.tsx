@@ -49,6 +49,7 @@ const IssueForm = ({ issue }: { issue?: IssueInterface }) => {
                 dispatch(create(payload));
             }
 
+            // Todo: Catch clause
             // sendMessage({ message: {isMessageSent: true, senderEmail: session?.user?.email!}});
             navigate('/issues/list');
         } catch (error) {

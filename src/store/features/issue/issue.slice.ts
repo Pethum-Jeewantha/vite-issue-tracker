@@ -1,5 +1,5 @@
 import {  createSlice } from "@reduxjs/toolkit";
-import {create, fetchAll, patch, remove, update} from "./issue.service.ts";
+import {create, fetchAll, fetchById, patch, remove, update} from "./issue.service.ts";
 import {IssueInterface} from "../../../interfaces/issue.interface.ts";
 
 interface IssueSliceInterface {
@@ -11,6 +11,7 @@ interface IssueSliceInterface {
 
 interface IssueState {
     issues: IssueSliceInterface;
+    issue: IssueInterface | undefined;
     status: "idle" | "pending" | "succeeded" | "failed";
     error: string;
     loading: boolean,
@@ -23,6 +24,7 @@ const initialState: IssueState = {
         limit: 10,
         total: 0,
     },
+    issue: undefined,
     status: "idle",
     error: "",
     loading: false,
@@ -42,6 +44,17 @@ const regionSlice = createSlice({
                 state.issues = action.payload;
             })
             .addCase(fetchAll.rejected, (state) => {
+                state.loading = false;
+                state.error = "failed";
+            })
+            .addCase(fetchById.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchById.fulfilled, (state, action) => {
+                state.loading = false;
+                state.issue = action.payload;
+            })
+            .addCase(fetchById.rejected, (state) => {
                 state.loading = false;
                 state.error = "failed";
             })

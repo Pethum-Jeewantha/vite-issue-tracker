@@ -23,7 +23,7 @@ const makeApiReq = async <T>(url: string, method: HttpMethod, data: any): Promis
   }
   catch(error)
   {
-    let errorMessage = (error as AxiosError).response?.data as string;
+    const errorMessage = (error as AxiosError).response?.data as string;
     throw new Error(errorMessage);
   }
 };
