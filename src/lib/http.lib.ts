@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import LocalStorageUtil from "./localStorage.lib.ts";
 
-export const currentEnvironment: Environment = "local";
+export const currentEnvironment: Environment = "stage";
 
 type Environment = "local" | "stage" | "prod";
 
@@ -16,7 +16,7 @@ const environmentVariableMapping: Record<Environment, Variable> = {
         "webSocketEndPoint": ""
     },
     stage: {
-        "baseEndPoint": "",
+        "baseEndPoint": "http://api-1834030956:3900/api",
         "webSocketEndPoint": ""
     },
     local: {
