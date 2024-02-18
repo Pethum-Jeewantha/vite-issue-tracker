@@ -7,26 +7,31 @@ type Environment = "local" | "stage" | "prod";
 
 interface Variable {
     baseEndPoint: string;
+    url: string;
     webSocketEndPoint: string;
 }
 
 const environmentVariableMapping: Record<Environment, Variable> = {
     prod: {
         "baseEndPoint": "",
+        "url": "",
         "webSocketEndPoint": ""
     },
     stage: {
         "baseEndPoint": "http://api-1834030956:3900/api",
+        "url": "https://399f54c4-1326-49cf-b555-612ec896e7e6.e1-us-east-azure.choreoapps.dev",
         "webSocketEndPoint": ""
     },
     local: {
         "baseEndPoint": "http://localhost:3900/api",
+        "url": "http://localhost:5173",
         "webSocketEndPoint": "ws://localhost:3200/ws"
     }
 }
 
 export const envVariables: Variable = {
     "baseEndPoint": environmentVariableMapping[currentEnvironment].baseEndPoint,
+    "url": environmentVariableMapping[currentEnvironment].url,
     "webSocketEndPoint": environmentVariableMapping[currentEnvironment].webSocketEndPoint
 }
 
