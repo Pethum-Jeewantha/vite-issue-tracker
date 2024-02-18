@@ -8,6 +8,7 @@ type Environment = "local" | "stage" | "prod";
 interface Variable {
     baseEndPoint: string;
     url: string;
+    asgardeoClientId: string;
     webSocketEndPoint: string;
 }
 
@@ -15,16 +16,19 @@ const environmentVariableMapping: Record<Environment, Variable> = {
     prod: {
         "baseEndPoint": "",
         "url": "",
+        "asgardeoClientId": "",
         "webSocketEndPoint": ""
     },
     stage: {
         "baseEndPoint": "http://api-1834030956:3900/api",
         "url": "https://399f54c4-1326-49cf-b555-612ec896e7e6.e1-us-east-azure.choreoapps.dev",
+        "asgardeoClientId": "rGoSAN08XkfZ18AZNwhjAo94T8Ma",
         "webSocketEndPoint": ""
     },
     local: {
         "baseEndPoint": "http://localhost:3900/api",
         "url": "http://localhost:5173",
+        "asgardeoClientId": "3Pk_2oQLDK6OmS11tXD3OlNxKpka",
         "webSocketEndPoint": "ws://localhost:3200/ws"
     }
 }
@@ -32,6 +36,7 @@ const environmentVariableMapping: Record<Environment, Variable> = {
 export const envVariables: Variable = {
     "baseEndPoint": environmentVariableMapping[currentEnvironment].baseEndPoint,
     "url": environmentVariableMapping[currentEnvironment].url,
+    "asgardeoClientId": environmentVariableMapping[currentEnvironment].asgardeoClientId,
     "webSocketEndPoint": environmentVariableMapping[currentEnvironment].webSocketEndPoint
 }
 
