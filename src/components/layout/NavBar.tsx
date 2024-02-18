@@ -56,6 +56,11 @@ const AuthStatus = () => {
 
     if (!isAuthenticated()) return <Button onClick={() => signIn()} className='nav-link'>Log In</Button>
 
+    async function handleOnLogout() {
+        await signOut();
+        LocalStorageUtil.clearAll();
+    }
+
     return (
         <Box>
             <DropdownMenu.Root>
@@ -75,8 +80,8 @@ const AuthStatus = () => {
                             {LocalStorageUtil.getItem<BasicUserInfo>('user')?.username}
                         </Text>
                     </DropdownMenu.Label>
-                    <DropdownMenu.Item>
-                        <div onClick={() => signOut()}>Log out</div>
+                    <DropdownMenu.Item onClick={handleOnLogout}>
+                        Log out
                     </DropdownMenu.Item>
                 </DropdownMenu.Content>
             </DropdownMenu.Root>
