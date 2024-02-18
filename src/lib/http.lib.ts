@@ -17,13 +17,13 @@ const environmentVariableMapping: Record<Environment, Variable> = {
         "baseEndPoint": "",
         "url": "",
         "asgardeoClientId": "",
-        "webSocketEndPoint": ""
+        "webSocketEndPoint": "ws://localhost:3200/ws"
     },
     stage: {
         "baseEndPoint": "http://api-1834030956:3900/api",
         "url": "https://399f54c4-1326-49cf-b555-612ec896e7e6.e1-us-east-azure.choreoapps.dev",
         "asgardeoClientId": "rGoSAN08XkfZ18AZNwhjAo94T8Ma",
-        "webSocketEndPoint": ""
+        "webSocketEndPoint": "ws://localhost:3200/ws"
     },
     local: {
         "baseEndPoint": "http://localhost:3900/api",
