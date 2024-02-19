@@ -21,8 +21,8 @@ const environmentVariableMapping: Record<Environment, Variable> = {
     },
     stage: {
         "baseEndPoint": "https://e16e8c9b-7404-4e21-a207-533f66f99c44-dev.e1-us-east-azure.choreoapis.dev/yiiu/api/issue-tracker-api-efc/v1.0/api",
-        "url": "https://399f54c4-1326-49cf-b555-612ec896e7e6.e1-us-east-azure.choreoapps.dev",
-        "asgardeoClientId": "rGoSAN08XkfZ18AZNwhjAo94T8Ma",
+        "url": "https://6166c516-dcf1-4b12-93b6-07fe52b06599.e1-us-east-azure.choreoapps.dev",
+        "asgardeoClientId": "t6EjUZgqGNRC0dvfd8zcrTLTfxga",
         "webSocketEndPoint": "ws://localhost:3200/ws"
     },
     local: {
