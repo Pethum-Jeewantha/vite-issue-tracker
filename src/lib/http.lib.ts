@@ -22,7 +22,8 @@ const environmentVariableMapping: Record<Environment, Variable> = {
         "webSocketEndPoint": "ws://localhost:3200/ws"
     },
     stage: {
-        "baseEndPoint": "https://e16e8c9b-7404-4e21-a207-533f66f99c44-dev.e1-us-east-azure.choreoapis.dev/yiiu/api/issue-tracker-api-efc/v1.0/api",
+        // @ts-ignore
+        "baseEndPoint": window?.configs?.apiUrl ? window.configs.apiUrl : "/" + "/api",
         "url": "https://6166c516-dcf1-4b12-93b6-07fe52b06599.e1-us-east-azure.choreoapps.dev",
         "asgardeoClientId": "t6EjUZgqGNRC0dvfd8zcrTLTfxga",
         "webSocketEndPoint": "ws://localhost:3200/ws"
