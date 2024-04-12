@@ -7,7 +7,7 @@ export const asgardeoConfigs =  {
     scope: [ "openid","profile" ]
 }
 
-/*export const choreoConfigs = {
+export const choreoConfigs = {
     clientID: import.meta.env.CHOREO_CLIENT_ID,
     clientSecret: import.meta.env.CHOREO_CLIENT_SECRET
-}*/
+}
