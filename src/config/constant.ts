@@ -6,3 +6,8 @@ export const asgardeoConfigs =  {
     baseUrl: "https://api.asgardeo.io/t/pethumjeewantha",
     scope: [ "openid","profile" ]
 }
+
+export const choreoConfigs = {
+    clientID: import.meta.env.CHOREO_CLIENT_ID,
+    clientSecret: import.meta.env.CHOREO_CLIENT_SECRET
+}

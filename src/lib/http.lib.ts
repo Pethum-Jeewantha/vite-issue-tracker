@@ -3,6 +3,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import oauth from 'axios-oauth-client'
 import LocalStorageUtil from "./localStorage.lib.ts";
+import {choreoConfigs} from "../config/constant.ts";
 
 export const currentEnvironment: Environment = "stage";
 
@@ -47,19 +48,13 @@ export const axiosInstance: AxiosInstance = axios.create({
     baseURL: envVariables.baseEndPoint
 });
 
-export const axiosPrivate: AxiosInstance = axios.create({
-    baseURL: envVariables.baseEndPoint,
-    headers: { 'Content-Type': 'application/json' },
-    withCredentials: true
-});
-
 const getClientCredentials = oauth.clientCredentials(
     axios.create(),
     "https://sts.choreo.dev/oauth2/token",
-    import.meta.env.CHOREO_CLIENT_ID,
-    import.meta.env.CHOREO_CLIENT_SECRET,
+    choreoConfigs.clientID,
+    choreoConfigs.clientSecret
 );
-const auth = await getClientCredentials("public");
+const auth = getClientCredentials("public");
 const accessToken = auth.access_token;
 
 let isLoading = false;
