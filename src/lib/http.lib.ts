@@ -46,6 +46,12 @@ export const axiosInstance: AxiosInstance = axios.create({
     baseURL: envVariables.baseEndPoint
 });
 
+export const axiosPrivate: AxiosInstance = axios.create({
+    baseURL: envVariables.baseEndPoint,
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true
+});
+
 let isLoading = false;
 
 axiosInstance.interceptors.response.use(
@@ -85,4 +91,4 @@ export const HttpService = {
         return await axiosInstance.delete(url);
     },
     isLoading: () => isLoading,
-}
+};
