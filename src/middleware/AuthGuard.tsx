@@ -4,9 +4,9 @@ import MainLayout from "../layout/MainLayout.tsx";
 import NavBar from "../components/layout/NavBar.tsx";
 import PageSpinner from "../components/layout/PageSpinner.tsx";
 import LocalStorageUtil from "../lib/localStorage.lib.ts";
-import oauth from "axios-oauth-client";
-import axios from "axios";
-import {choreoConfigs} from "../config/constant.ts";
+// import oauth from "axios-oauth-client";
+// import axios from "axios";
+// import {choreoConfigs} from "../config/constant.ts";
 
 interface AuthGuardProps {
     component: React.ReactElement;
@@ -16,7 +16,7 @@ const AuthGuard: React.FC<AuthGuardProps> = ({component}) => {
     const {getBasicUserInfo} = useAuthContext();
 
     function handleSignIn() {
-        const getClientCredentials = oauth.clientCredentials(
+        /*const getClientCredentials = oauth.clientCredentials(
             axios.create(),
             "https://sts.choreo.dev/oauth2/token",
             choreoConfigs.clientID,
@@ -24,7 +24,7 @@ const AuthGuard: React.FC<AuthGuardProps> = ({component}) => {
         );
         const auth = getClientCredentials("public");
         const accessToken = auth.access_token;
-        LocalStorageUtil.setItem('@token', accessToken);
+        LocalStorageUtil.setItem('@token', accessToken);*/
 
         getBasicUserInfo().then((user) => {
             LocalStorageUtil.setItem('user', user);
