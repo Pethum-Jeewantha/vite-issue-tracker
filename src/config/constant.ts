@@ -8,6 +8,6 @@ export const asgardeoConfigs =  {
 }
 
 export const choreoConfigs = {
-    clientID: import.meta.env.CHOREO_CLIENT_ID,
-    clientSecret: import.meta.env.CHOREO_CLIENT_SECRET
+    clientID: import.meta.env.VITE_CHOREO_CLIENT_ID,
+    clientSecret: import.meta.env.VITE_CHOREO_CLIENT_SECRET
 }
