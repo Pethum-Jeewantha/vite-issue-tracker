@@ -13,9 +13,9 @@ interface AuthGuardProps {
 }
 
 const AuthGuard: React.FC<AuthGuardProps> = ({component}) => {
-    const {getBasicUserInfo, getIDToken, getAccessToken} = useAuthContext();
+    const {getBasicUserInfo, getAccessToken} = useAuthContext();
 
-    function handleSignIn() {
+    async function handleSignIn() {
         // const getClientCredentials = oauth.clientCredentials(
         //     axios.create(),
         //     "https://sts.choreo.dev/oauth2/token",
@@ -26,15 +26,12 @@ const AuthGuard: React.FC<AuthGuardProps> = ({component}) => {
         // const accessToken = auth.access_token;
         // LocalStorageUtil.setItem('@token', accessToken);
 
-        getBasicUserInfo().then((user) => {
-            LocalStorageUtil.setItem('user', user);
-        });
-        getIDToken().then((token) => {
-            LocalStorageUtil.setItem('@token', token);
-        });
-        getAccessToken().then((token) => {
-            console.log(token);
-        });
+        const user = await getBasicUserInfo();
+        LocalStorageUtil.setItem('user', user);
+
+        const token = await getAccessToken()
+        LocalStorageUtil.setItem('@token', token);
+        console.log("Token: ", token)
     }
 
     return (
