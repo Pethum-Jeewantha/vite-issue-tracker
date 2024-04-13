@@ -1,7 +1,7 @@
 import {envVariables} from "../lib/http.lib.ts";
 
 export const asgardeoConfigs =  {
-    signInRedirectURL: `${envVariables.url}/dashboard`,
+    signInRedirectURL: `${envVariables.url}`,
     clientID: envVariables.asgardeoClientId,
     baseUrl: "https://api.asgardeo.io/t/pethumjeewantha",
     scope: [ "openid","profile" ]
