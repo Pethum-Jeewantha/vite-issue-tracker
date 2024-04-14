@@ -3,7 +3,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import LocalStorageUtil from "./localStorage.lib.ts";
 
-export const currentEnvironment: Environment = "local";
+export const currentEnvironment: Environment = "stage";
 
 type Environment = "local" | "stage" | "prod";
 
