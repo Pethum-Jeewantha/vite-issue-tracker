@@ -3,7 +3,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import LocalStorageUtil from "./localStorage.lib.ts";
 
-export const currentEnvironment: Environment = "stage";
+export const currentEnvironment: Environment = "prod";
 
 type Environment = "local" | "stage" | "prod";
 
@@ -16,9 +16,9 @@ interface Variable {
 
 const environmentVariableMapping: Record<Environment, Variable> = {
     prod: {
-        "baseEndPoint": "",
-        "url": "",
-        "asgardeoClientId": "",
+        "baseEndPoint": "https://e16e8c9b-7404-4e21-a207-533f66f99c44-prod.e1-us-east-azure.choreoapis.dev/yiiu/api/issue-tracker-api-efc/v1.0/api",
+        "url": "https://2101ab7b-9fe9-47ff-8411-047eaca7c2f5.e1-us-east-azure.choreoapps.dev",
+        "asgardeoClientId": "bXqczeibqNQUcHndWZG2GupfHlIa",
         "webSocketEndPoint": "ws://localhost:3200/ws"
     },
     stage: {
